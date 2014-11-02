@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>NJULogin.Windows</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <!-- NJULogin.Windows references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+</head>
+<body>
+    <h1>NJU Auto-Login</h1>
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="inputUsername" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="inputPassword" />
+    </div>
+    <div id="msgBox">Content goes here</div>
+    <div><button id="btnRefresh">Refresh token</button></div>
+    <x-ms-webview id="iframe" src="http://p.nju.edu.cn" width="640" height="480"></x-ms-webview>
+</body>
+</html>

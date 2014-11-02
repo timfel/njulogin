@@ -1,0 +1,1 @@
+MainPackage=c:\users\tim\documents\visual studio 2013\Projects\NJULogin\NJULogin\NJULogin.WindowsPhone\bin\Debug\NJULogin.WindowsPhone_1.0.0.0_Bundle\NJULogin.WindowsPhone_1.0.0.0_AnyCPU_Debug.appx
