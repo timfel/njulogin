@@ -78,20 +78,27 @@
         }
 
         if (taskRegistered != true) {
+            var buildTask = function () {
+                var builder = new Windows.ApplicationModel.Background.BackgroundTaskBuilder();
+                builder.name = exampleTaskName;
+                builder.taskEntryPoint = "js\\njulogin.js";
+                var trigger = new Windows.ApplicationModel.Background.SystemTrigger(
+                    Windows.ApplicationModel.Background.SystemTriggerType.internetAvailable, false);
+                builder.setTrigger(trigger);
+                task = builder.register();
+                task.addEventListener("completed", updateUI);
+                task.addEventListener("progress", updateUI);
+            }
             if (document.getElementById("WindowsPhone")) {
                 Windows.ApplicationModel.Background.BackgroundExecutionManager.removeAccess();
-                Windows.ApplicationModel.Background.BackgroundExecutionManager.requestAccessAsync().done();
+                Windows.ApplicationModel.Background.BackgroundExecutionManager.requestAccessAsync().done(buildTask);
+            } else {
+                buildTask();
             }
-            var builder = new Windows.ApplicationModel.Background.BackgroundTaskBuilder();
-            builder.name = exampleTaskName;
-            builder.taskEntryPoint = "js\\njulogin.js";
-            var trigger = new Windows.ApplicationModel.Background.SystemTrigger(
-                Windows.ApplicationModel.Background.SystemTriggerType.internetAvailable, false);
-            builder.setTrigger(trigger);
-            task = builder.register();
+        } else {
+            task.addEventListener("completed", updateUI);
+            task.addEventListener("progress", updateUI);
         }
-        task.addEventListener("completed", updateUI);
-        task.addEventListener("progress", updateUI);
     }
 
     function loadSettings() {
