@@ -52,6 +52,8 @@
     <PackageCertificateKeyFile>NJULogin.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxBundle>Always</AppxBundle>
     <PackageCertificateThumbprint>42ADBAF287AB6C7C8CF1C41D6B8880D2F35627ED</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
