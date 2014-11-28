@@ -21,6 +21,7 @@
         }
         loadSettings();
         registerLoginBackgroundTask();
+        setTimeout(resolve, 1000);
     };
 
     app.oncheckpoint = function (args) {
@@ -40,31 +41,39 @@
     }
 
     function updateUI() {
-        alertMsg(Windows.Storage.ApplicationData.current.localSettings.values["status"]);
-        document.getElementById('iframe').src = document.getElementById('iframe').src;
+        var status = Windows.Storage.ApplicationData.current.localSettings.values["status"];
+        if (status) {
+            alertMsg(status);
+            showMsg(true);
+        } else {
+            document.getElementById('iframe').src = document.getElementById('iframe').src;
+            showMsg(false);
+        }
     }
 
     function showMsg(flag) {
-        document.getElementById('iframe').style = 'display: ' + (flag ? 'none' : 'box');
-        document.getElementById('msgBox').style = 'display: ' + (flag ? 'box' : 'none');
+        document.getElementById('iframe').style.display = (flag ? 'none' : '');
+        document.getElementById('msgBox').style.display = (flag ? '' : 'none');
     }
 
     function resolve() {
         var request = new XMLHttpRequest();
-        request.open("get", "http://p.nju.edu.cn/", false);
+        request.open("head", "http://p.nju.edu.cn/", false);
         try {
             request.send();
         } catch (ex) {
             Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
             updateUI();
-
             return false;
         }
+        Windows.Storage.ApplicationData.current.localSettings.values["status"] = null;
+        updateUI();
         return true;
     }
 
     function doLogin() {
-        alertMsg("Sending login request...");
+        resolve();
+        //alertMsg("Sending login request...");
         var request = new XMLHttpRequest();
         request.open("post", "http://p.nju.edu.cn/portal/portal_io.do", true);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -73,10 +82,10 @@
             document.getElementById("inputPassword"));
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
-                alertMsg(request.responseText);
+                // alertMsg(request.responseText);
                 document.getElementById('iframe').src = document.getElementById('iframe').src;
             } else if (request.readyState == 4) {
-                alertMsg("There was an error logging you in: " + request.responseText);
+                // alertMsg("There was an error logging you in: " + request.responseText);
             }
         };
     }

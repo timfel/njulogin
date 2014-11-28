@@ -3,18 +3,18 @@
 
     function resolve() {
         var request = new XMLHttpRequest();
-        request.open("get", "http://p.nju.edu.cn/", false);
+        request.open("head", "http://p.nju.edu.cn/", false);
         try {
             request.send();
         } catch (ex) {
-            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network";
+            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
             return false;
         }
+        Windows.Storage.ApplicationData.current.localSettings.values["status"] = null;
         return true;
     }
 
     if (resolve()) {
-        Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Starting login...";
         var request = new XMLHttpRequest();
         request.open("post", "http://p.nju.edu.cn/portal/portal_io.do", false);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -30,9 +30,9 @@
             statusText = request.responseText;
         }
         if (request.readyState == 4 && request.status == 200) {
-            Windows.Storage.ApplicationData.current.localSettings.values["status"] = request.responseText;
+            //Windows.Storage.ApplicationData.current.localSettings.values["status"] = request.responseText;
         } else if (request.readyState == 4) {
-            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "There was an error logging you in: " + statusText;
+            //Windows.Storage.ApplicationData.current.localSettings.values["status"] = "There was an error logging you in: " + statusText;
         }
     }
     close();
