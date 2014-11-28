@@ -46,7 +46,7 @@
             alertMsg(status);
             showMsg(true);
         } else {
-            document.getElementById('iframe').src = document.getElementById('iframe').src;
+            document.getElementById('iframe').src = document.getElementById('iframe').src || 'http://p.nju.edu.cn';
             showMsg(false);
         }
     }
