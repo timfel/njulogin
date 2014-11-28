@@ -2,8 +2,8 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="79ed7ada-1fc9-4d68-9776-5505e620ce76" Version="1.0.0.0" Publisher="CN=Tim" />
   <Properties>
-    <DisplayName>NJULogin.Windows</DisplayName>
-    <PublisherDisplayName>Tim</PublisherDisplayName>
+    <DisplayName>NJU Auto Login</DisplayName>
+    <PublisherDisplayName>Tim Felgentreff</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <m2:VisualElements DisplayName="NJULogin.Windows" Description="NJULogin.Windows" ForegroundText="light" BackgroundColor="#464646" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png">
+      <m2:VisualElements DisplayName="NJU Auto Login" Description="您将登录在自动当您连接到 NJU WLAN。没有更多手动打开登录页面 ！Will log you in automatically when you connect to NJU-WLAN. No more manual opening of login page!" ForegroundText="light" BackgroundColor="#464646" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png" ToastCapable="false">
         <m2:SplashScreen Image="images\splashscreen.png" />
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
