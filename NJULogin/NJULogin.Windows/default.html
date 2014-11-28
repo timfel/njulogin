@@ -8,21 +8,35 @@
     <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
-
     <!-- NJULogin.Windows references -->
     <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/stylesheet.css" rel="stylesheet" />
     <script src="/js/default.js"></script>
+    <!-- Microsoft Advertising required references -->
+    <script src="/MSAdvertisingJS/ads/ad.js"></script>
 </head>
 <body>
     <h1>NJU Auto-Login</h1>
-    <div>
-        <label for="username">Username</label>
-        <input type="text" name="username" id="inputUsername" />
-        <label for="password">Password</label>
-        <input type="password" name="password" id="inputPassword" />
+    <div id="form">
+        <div class="field">
+            <label class="field__label" for="username">Username</label>
+            <input class="field__input" type="text" name="username" id="inputUsername" required/>
+        </div>
+        <div class="field">
+            <label class="field__label" for="password">Password</label>
+            <input class="field__input" type="password" name="password" id="inputPassword" required/>
+        </div>
+        <div class="field">
+            <button id="btnRefresh">Refresh token</button>
+        </div>
     </div>
-    <div id="msgBox">Content goes here</div>
-    <div><button id="btnRefresh">Refresh token</button></div>
-    <x-ms-webview id="iframe" src="http://p.nju.edu.cn" width="640" height="480"></x-ms-webview>
+    <div style="position: relative">
+        <!--<div id="msgBox">Content goes here</div>-->
+        <div id="myAd" style="position: absolute; width: 160px; height: 600px; z-index: 1; flex: 0 0 auto"
+             data-win-control="MicrosoftNSJS.Advertising.AdControl"
+             data-win-options="{applicationId: 'd25517cb-12d4-4699-8bdc-52040c712cab', adUnitId: '10043107'}">
+        </div>
+        <x-ms-webview id="iframe" src="http://p.nju.edu.cn" width="100%" height="100%"></x-ms-webview>
+    </div>
 </body>
 </html>

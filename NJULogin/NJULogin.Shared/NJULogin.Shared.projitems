@@ -6,6 +6,7 @@
     <SharedGUID>53a3e458-4442-46bc-9dc5-d950357e21d6</SharedGUID>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)css\stylesheet.css" />
     <Content Include="$(MSBuildThisFileDirectory)js\default.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\njulogin.js" />
   </ItemGroup>

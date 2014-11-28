@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.2.0, Version=1.0" />
+    <SDKReference Include="MSAdvertisingJS, Version=8.1" />
   </ItemGroup>
   <Import Project="..\NJULogin.Shared\NJULogin.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
