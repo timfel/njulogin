@@ -5,6 +5,7 @@
 
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
+    var NJU_RESOURCE = "p.nju.edu.cn";
 
     app.onactivated = function (args) {
         if (args.detail.kind === activation.ActivationKind.launch) {
@@ -49,8 +50,8 @@
         request.open("post", "http://p.nju.edu.cn/portal/portal_io.do", true);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send("action=login&username=" +
-            Windows.Storage.ApplicationData.current.localSettings.values["username"] + "&password=" +
-            Windows.Storage.ApplicationData.current.localSettings.values["password"]);
+            document.getElementById("inputUsername").value + "&password=" +
+            document.getElementById("inputPassword"));
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 alertMsg(request.responseText);
@@ -103,14 +104,40 @@
 
     function loadSettings() {
         var username = document.getElementById("inputUsername"),
-            password = document.getElementById("inputPassword");
-        username.onchange = function () {
-            Windows.Storage.ApplicationData.current.localSettings.values["username"] = username.value;
+            password = document.getElementById("inputPassword"),
+            vault = new Windows.Security.Credentials.PasswordVault(),
+            credentialList = [],
+            pc;
+        try {
+            credentialList = vault.findAllByResource(NJU_RESOURCE);
+        } catch (e) {
+            // Exception is thrown when resource does not exist, yet
         }
-        password.onchange = function () {
-            Windows.Storage.ApplicationData.current.localSettings.values["password"] = password.value;
+        if (credentialList.length > 0) {
+            pc = credentialList[0];
         }
-        username.value = Windows.Storage.ApplicationData.current.localSettings.values["username"];
-        password.value = Windows.Storage.ApplicationData.current.localSettings.values["password"];
+        username.onchange = storeLogin;
+        password.onchange = storeLogin;
+        if (pc) {
+            pc.retrievePassword();
+            username.value = pc.userName;
+            password.value = pc.password;
+        }
+    }
+
+    function storeLogin() {
+        var pc = new Windows.Security.Credentials.PasswordCredential(NJU_RESOURCE, username.value || "missing", password.value || "missing");
+        var vault = new Windows.Security.Credentials.PasswordVault(),
+            creds = [];
+        try {
+            creds = vault.findAllByResource(NJU_RESOURCE);
+        } catch (e) {
+            // Exception is thrown if resource has no credentials
+        }
+        // make sure we only store the last login
+        for (var i = 0; i < creds.length; i++) {
+            vault.remove(creds[i]);
+        }
+        vault.add(pc);
     }
 })();
