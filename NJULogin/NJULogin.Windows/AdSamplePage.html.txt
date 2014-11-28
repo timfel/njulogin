@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My_Ad_Funded_Windows_JS_App</title>
+
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet">
+    <script src="/js/default.js"></script>
+
+    <script src="/MSAdvertisingJS/ads/ad.js"></script>
+
+</head>
+<body>
+
+    <div id="MyAd_1" style="position: absolute; top: 50px; left: 0px; width: 160px; height: 600px; z-index: 1" 
+      data-win-control="MicrosoftNSJS.Advertising.AdControl" 
+      data-win-options="{applicationId: 'f76d43c4-9dda-4e89-9ff5-3cceb5f91a91', adUnitId: '197122'}">
+    </div>
+
+
+</body>
+</html>
