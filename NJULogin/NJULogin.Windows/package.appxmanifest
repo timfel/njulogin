@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="79ed7ada-1fc9-4d68-9776-5505e620ce76" Version="1.0.0.0" Publisher="CN=Tim" />
+  <Identity Name="40305timfelgentreff.NJUAutoLogin" Version="1.1.0.0" Publisher="CN=5ABEE855-0809-431E-9EB1-BBC5221A386A" />
   <Properties>
     <DisplayName>NJU Auto Login</DisplayName>
-    <PublisherDisplayName>Tim Felgentreff</PublisherDisplayName>
+    <PublisherDisplayName>timfelgentreff</PublisherDisplayName>
     <Logo>images\storelogo.png</Logo>
   </Properties>
   <Prerequisites>

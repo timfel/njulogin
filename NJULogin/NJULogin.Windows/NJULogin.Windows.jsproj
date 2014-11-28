@@ -49,8 +49,9 @@
     <RequiredPlatformVersion>8.1</RequiredPlatformVersion>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>NJULogin_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>NJULogin.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxBundle>Always</AppxBundle>
+    <PackageCertificateThumbprint>42ADBAF287AB6C7C8CF1C41D6B8880D2F35627ED</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -65,6 +66,8 @@
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
     <Content Include="css\default.css" />
+    <None Include="NJULogin.Windows_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <None Include="NJULogin_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
