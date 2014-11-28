@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="2ce61f2f-2c3d-4d80-b78e-72fabbd51346" Version="1.0.0.0" Publisher="CN=Tim" />
-  <mp:PhoneIdentity PhoneProductId="2ce61f2f-2c3d-4d80-b78e-72fabbd51346" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="40305timfelgentreff.NJUAutoLogin" Version="1.1.0.0" Publisher="CN=5ABEE855-0809-431E-9EB1-BBC5221A386A" />
+  <mp:PhoneIdentity PhoneProductId="81b5da66-d3b2-4464-bb19-28aaa8cfb385" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>NJU Auto Login</DisplayName>
-    <PublisherDisplayName>Tim</PublisherDisplayName>
+    <PublisherDisplayName>timfelgentreff</PublisherDisplayName>
     <Logo>images\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
