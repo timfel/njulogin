@@ -44,6 +44,25 @@
         document.getElementById('iframe').src = document.getElementById('iframe').src;
     }
 
+    function showMsg(flag) {
+        document.getElementById('iframe').style = 'display: ' + (flag ? 'none' : 'box');
+        document.getElementById('msgBox').style = 'display: ' + (flag ? 'box' : 'none');
+    }
+
+    function resolve() {
+        var request = new XMLHttpRequest();
+        request.open("get", "http://p.nju.edu.cn/", false);
+        try {
+            request.send();
+        } catch (ex) {
+            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
+            updateUI();
+
+            return false;
+        }
+        return true;
+    }
+
     function doLogin() {
         alertMsg("Sending login request...");
         var request = new XMLHttpRequest();
