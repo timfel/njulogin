@@ -58,17 +58,13 @@
 
     function resolve() {
         var request = new XMLHttpRequest();
-        request.open("head", "http://p.nju.edu.cn/", false);
-        try {
-            request.send();
-        } catch (ex) {
-            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
-            updateUI();
-            return false;
-        }
-        Windows.Storage.ApplicationData.current.localSettings.values["status"] = null;
-        updateUI();
-        return true;
+        request.open("head", "http://p.nju.edu.cn/", true);
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status != 200) {
+                Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
+                updateUI();
+            }
+        };
     }
 
     function doLogin() {
@@ -79,7 +75,7 @@
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send("action=login&username=" +
             document.getElementById("inputUsername").value + "&password=" +
-            document.getElementById("inputPassword"));
+            document.getElementById("inputPassword").value);
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 // alertMsg(request.responseText);
