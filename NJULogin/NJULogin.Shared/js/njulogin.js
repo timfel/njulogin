@@ -19,20 +19,19 @@
     function findUsernamePassword() {
         var vault = new Windows.Security.Credentials.PasswordVault(),
             credentialList = [],
-            pc;
+            pc = { userName: '', password: '' };
         try {
             credentialList = vault.findAllByResource(NJU_RESOURCE);
         } catch (e) {
-            // Exception is thrown when resource does not exist, yet
+            // Exception is thrown when resource does not exist
+            return pc;
         }
         if (credentialList.length > 0) {
             pc = credentialList[0];
-        }
-        if (pc) {
             pc.retrievePassword();
             return pc;
         } else {
-            return { userName: '', password: '' };
+            return pc;
         }
     }
 
