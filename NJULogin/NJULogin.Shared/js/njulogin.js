@@ -1,6 +1,8 @@
 ﻿(function () {
     "use strict";
 
+    var NJU_RESOURCE = "p.nju.edu.cn";
+
     function resolve() {
         var request = new XMLHttpRequest();
         request.open("head", "http://p.nju.edu.cn/", false);
@@ -14,15 +16,34 @@
         return true;
     }
 
+    function findUsernamePassword() {
+        var vault = new Windows.Security.Credentials.PasswordVault(),
+            credentialList = [],
+            pc;
+        try {
+            credentialList = vault.findAllByResource(NJU_RESOURCE);
+        } catch (e) {
+            // Exception is thrown when resource does not exist, yet
+        }
+        if (credentialList.length > 0) {
+            pc = credentialList[0];
+        }
+        if (pc) {
+            pc.retrievePassword();
+            return pc;
+        } else {
+            return { userName: '', password: '' };
+        }
+    }
+
     if (resolve()) {
-        var request = new XMLHttpRequest();
+        var request = new XMLHttpRequest(),
+            pc = findUsernamePassword();
         request.open("post", "http://p.nju.edu.cn/portal/portal_io.do", false);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var statusText = "Unknown problem";
         try {
-            request.send("action=login&username=" +
-                Windows.Storage.ApplicationData.current.localSettings.values["username"] + "&password=" +
-                Windows.Storage.ApplicationData.current.localSettings.values["password"]);
+            request.send("action=login&username=" + pc.userName + "&password=" + pc.password);
         } catch (ex) {
             statusText = ex + "";
         }
