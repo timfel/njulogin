@@ -9,7 +9,7 @@
         try {
             request.send();
         } catch (ex) {
-            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
+            Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 对不起，您不在南京大学校园无线网络中。";
             return false;
         }
         Windows.Storage.ApplicationData.current.localSettings.values["status"] = null;
@@ -52,7 +52,7 @@
     }
 
     function possibleSuccess(statusText) {
-        var notificationText = "Login to NJU failed - 登录失败南京大学网络接入",
+        var notificationText = "Login to NJU failed - 登录失败。",
             json;
         try {
             json = JSON.parse(statusText);
@@ -60,7 +60,7 @@
             // no worries
         }
         if (json && json.reply_code === 101) {
-            notificationText = "Logged into NJU - 登录到南京大学网络接入";
+            notificationText = "Logged into NJU - 登录成功。";
         }
         showToast(notificationText);
     }

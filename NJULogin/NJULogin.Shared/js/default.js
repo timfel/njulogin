@@ -61,7 +61,7 @@
         request.open("head", "http://p.nju.edu.cn/", true);
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status != 200) {
-                Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 不在南京大学网络中。";
+                Windows.Storage.ApplicationData.current.localSettings.values["status"] = "Not in NJU network. 对不起，您不在南京大学校园无线网络中。";
                 updateUI();
             }
         };
