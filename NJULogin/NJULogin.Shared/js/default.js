@@ -86,6 +86,22 @@
         };
     }
 
+    function currentVersion() {
+        var version = Windows.ApplicationModel.Package.current.id.version;
+        return version.build + "." + version.major + "." + version.minor + "." + version.revision;
+    }
+
+    function wasUpdated() {
+        var settings = Windows.Storage.ApplicationData.current.localSettings,
+            version = currentVersion();
+        if (settings.values["AppVersion"] !== version) {
+            settings.values["AppVersion"] = version;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function registerLoginBackgroundTask() {
         var task;
         var taskRegistered = false;
@@ -96,7 +112,10 @@
             task = iter.current.value;
             if (task.name === exampleTaskName) {
                 taskRegistered = true;
-                //task.unregister(true);
+                if (wasUpdated()) {
+                    task.unregister(true);
+                    taskRegistered = false;
+                }
                 break;
             }
             iter.moveNext();
