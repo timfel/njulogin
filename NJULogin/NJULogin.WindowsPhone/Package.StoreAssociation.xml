@@ -188,8 +188,17 @@
     <ReservedNames>
       <ReservedName>NJU Auto Login</ReservedName>
       <ReservedName>南大登录</ReservedName>
+      <ReservedName>南大无线网自动登录脚本</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames />
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=47fe32cf-9091-47e8-a62d-08347eaa4242" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=47fe32cf-9091-47e8-a62d-08347eaa4242">
+    <BundleInfo>
+      <PackageInfo>
+        <OsMinVersion>6.3.0.0</OsMinVersion>
+        <PackageArchitecture>neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>1.1.0.2</PackageMaxArchitectureVersion>
+      </PackageInfo>
+    </BundleInfo>
+  </PackageInfoList>
 </StoreAssociation>

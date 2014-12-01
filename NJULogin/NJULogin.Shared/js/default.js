@@ -135,7 +135,19 @@
             }
             if (document.getElementById("WindowsPhone")) {
                 Windows.ApplicationModel.Background.BackgroundExecutionManager.removeAccess();
-                Windows.ApplicationModel.Background.BackgroundExecutionManager.requestAccessAsync().done(buildTask);
+                Windows.ApplicationModel.Background.BackgroundExecutionManager.requestAccessAsync().then(function (result) {
+                    switch (result) {
+                        case Windows.ApplicationModel.Background.BackgroundAccessStatus.denied:
+                            // Windows Phone: The maximum number of background apps allowed across the system has been reached or
+                            // background activity and updates for this app are disabled by the user.
+                            var dialog = new Windows.UI.Popups.MessageDialog("Cannot add background task for login. " +
+                                    "The maximum number of background tasks has been reached or it was disabled.");
+                            dialog.showAsync().operation.start();
+                            break;
+                        case Windows.ApplicationModel.Background.BackgroundAccessStatus.allowedMayUseActiveRealTimeConnectivity:
+                            buildTask();
+                    }
+                });
             } else {
                 buildTask();
             }

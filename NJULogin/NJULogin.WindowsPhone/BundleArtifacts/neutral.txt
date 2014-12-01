@@ -1,1 +1,1 @@
-MainPackage=C:\Users\Tim\Documents\Visual Studio 2013\PROJECTS\NJULogin\NJULogin\NJULogin.WindowsPhone\bin\Release\NJULogin.WindowsPhone_1.1.0.2_Bundle\NJULogin.WindowsPhone_1.1.0.2_AnyCPU.appx
+MainPackage=C:\Users\Tim\Documents\Visual Studio 2013\PROJECTS\NJULogin\NJULogin\NJULogin.WindowsPhone\bin\Release\NJULogin.WindowsPhone_1.1.0.3_Bundle\NJULogin.WindowsPhone_1.1.0.3_AnyCPU.appx
