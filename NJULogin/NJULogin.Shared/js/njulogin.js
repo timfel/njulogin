@@ -50,6 +50,18 @@
             statusText = request.responseText;
         }
         if (request.readyState == 4 && request.status == 200) {
+            var notifications = Windows.UI.Notifications;
+            var template = notifications.ToastTemplateType.toastImageAndText01;
+            var toastXml = notifications.ToastNotificationManager.getTemplateContent(template);
+            var toastTextElements = toastXml.getElementsByTagName("text");
+            toastTextElements[0].appendChild(toastXml.createTextNode("Logged into NJU - 登录到南京大学网络接入"));
+            var toastNode = toastXml.selectSingleNode("/toast");
+            var audio = toastXml.createElement("audio");
+            audio.setAttribute("silent", "true");
+            toastNode.appendChild(audio);
+            var toast = new notifications.ToastNotification(toastXml);
+            var toastNotifier = notifications.ToastNotificationManager.createToastNotifier();
+            toastNotifier.show(toast);
             //Windows.Storage.ApplicationData.current.localSettings.values["status"] = request.responseText;
         } else if (request.readyState == 4) {
             //Windows.Storage.ApplicationData.current.localSettings.values["status"] = "There was an error logging you in: " + statusText;
