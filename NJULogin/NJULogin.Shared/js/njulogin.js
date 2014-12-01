@@ -35,6 +35,36 @@
         }
     }
 
+    function showToast(notificationText) {
+        var notifications = Windows.UI.Notifications;
+        var template = notifications.ToastTemplateType.toastText01;
+        var toastXml = notifications.ToastNotificationManager.getTemplateContent(template);
+        var toastTextElements = toastXml.getElementsByTagName("text");
+        toastTextElements[0].appendChild(toastXml.createTextNode(notificationText));
+        var toastNode = toastXml.selectSingleNode("/toast");
+        var audio = toastXml.createElement("audio");
+        audio.setAttribute("silent", "true");
+        toastNode.appendChild(audio);
+        var toast = new notifications.ToastNotification(toastXml);
+        var toastNotifier = notifications.ToastNotificationManager.createToastNotifier();
+        toastNotifier.show(toast);
+        //Windows.Storage.ApplicationData.current.localSettings.values["status"] = request.responseText;
+    }
+
+    function possibleSuccess(statusText) {
+        var notificationText = "Login to NJU failed - 登录失败南京大学网络接入",
+            json;
+        try {
+            json = JSON.parse(statusText);
+        } catch (e) {
+            // no worries
+        }
+        if (json && json.reply_code === 101) {
+            notificationText = "Logged into NJU - 登录到南京大学网络接入";
+        }
+        showToast(notificationText);
+    }
+
     if (resolve()) {
         var request = new XMLHttpRequest(),
             pc = findUsernamePassword();
@@ -50,19 +80,7 @@
             statusText = request.responseText;
         }
         if (request.readyState == 4 && request.status == 200) {
-            var notifications = Windows.UI.Notifications;
-            var template = notifications.ToastTemplateType.toastImageAndText01;
-            var toastXml = notifications.ToastNotificationManager.getTemplateContent(template);
-            var toastTextElements = toastXml.getElementsByTagName("text");
-            toastTextElements[0].appendChild(toastXml.createTextNode("Logged into NJU - 登录到南京大学网络接入"));
-            var toastNode = toastXml.selectSingleNode("/toast");
-            var audio = toastXml.createElement("audio");
-            audio.setAttribute("silent", "true");
-            toastNode.appendChild(audio);
-            var toast = new notifications.ToastNotification(toastXml);
-            var toastNotifier = notifications.ToastNotificationManager.createToastNotifier();
-            toastNotifier.show(toast);
-            //Windows.Storage.ApplicationData.current.localSettings.values["status"] = request.responseText;
+            possibleSuccess(statusText);
         } else if (request.readyState == 4) {
             //Windows.Storage.ApplicationData.current.localSettings.values["status"] = "There was an error logging you in: " + statusText;
         }
